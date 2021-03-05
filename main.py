@@ -29,15 +29,18 @@ class Application(Screen):
         super().__init__(**args)
         self.points = set()
         self.structure = algorithms.Delanuay([(-4320., -4320.),(4320., 0.),(0., 4320.)])
-        Clock.schedule_interval(self.updateScreen, 0.2)
+        # Clock.schedule_interval(self.updateScreen, 0.2)
 
 
     def on_touch_down(self, touch):
         if (touch.x, touch.y) not in self.points:
+            print(len(self.points))
             self.draw_point(touch)
+            self.updateScreen()
 
     def on_touch_move(self, touch):
         self.draw_point(touch)
+        self.updateScreen()
 
     def on_touch_up(self, touch):
         pass
@@ -46,7 +49,7 @@ class Application(Screen):
         self.points.add((touch.x,touch.y))
         self.structure.addPoint((touch.x,touch.y))
 
-    def updateScreen(self, dt):
+    def updateScreen(self):
         self.canvas.clear()
         with self.canvas:
             i = 0
