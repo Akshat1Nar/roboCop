@@ -1,6 +1,45 @@
 import math
 import random
 
+class Vector():
+
+    def __init__(self, point):
+        self.point = point
+
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            return (self.point[0]+other.point[0], self.point[1]+other.point[1])
+        elif isinstance(other, int):
+            return (self.point[0]+other, self.point[1]+other)
+        else:
+            assert False
+
+
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            return (self.point[0]-other.point[0], self.point[1]-other.point[1])
+        elif isinstance(other, int):
+            return (self.point[0]-other, self.point[1]-other)
+        else:
+            assert False
+
+    def __mul__(self, other):
+        # Cross Product
+        if isinstance(other, Vector) or isinstance(other, tuple):
+            pass
+        elif isinstance(other, int):
+            pass
+        else:
+            assert False
+
+    def __truediv__(self, other):
+        if isinstance(other, Vector) or isinstance(other, tuple):
+            pass
+        elif isinstance(other, int):
+            pass
+        else:
+            assert False
+
 class Polygon():
 
     def __init__(self, n, points):
@@ -20,6 +59,19 @@ class Polygon():
 
     def edgePresent(self, edge):
         return edge in self.edges
+
+    @staticmethod
+    def crossproduct(point1, point2):
+        pass
+
+    @staticmethod
+    def intersect(edge1, edge2):
+        p = edge1[0]
+        q = edge2[0]
+        r = (edge1[1][0]-edge1[0][0], (edge1[1][1]-edge1[0][1]))
+        s = (edge2[1][0]-edge2[0][0], (edge2[1][1]-edge2[0][1]))
+
+
 
 class Circle():
 
@@ -57,6 +109,7 @@ class Triangle(Polygon):
             self.color = (random.randint(0, 100)/100.0,
                           random.randint(0, 100)/100.0,
                           random.randint(0, 100)/100.0,
+                          random.randint(0, 100)/250.0,
                          )
             Triangle.COLORS.add(self.color)
         Triangle.i+=1

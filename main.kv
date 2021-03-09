@@ -2,14 +2,25 @@
 <Application>:
 
     FloatLayout:
-        Button:
-            text: 'Back'
-            background_color: 1.0, 0.7, 0.7
-            size_hint: 0.2, 0.05
-            pos_hint: {'x': 0.0, 'y': 0.0}
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'Theory'
+        # Button:
+        #     id: 'button1'
+        #     text: 'Back'
+        #     background_color: 1.0, 0.7, 0.7
+        #     size_hint: 0.2, 0.05
+        #     pos_hint: {'x': 0.0, 'y': 0.0}
+        #     on_press:
+        #         root.manager.transition.direction = 'right'
+        #         root.manager.current = 'Theory'
+        # Button:
+        #     it: 'button2'
+        #     text: 'Add polygon'
+        #     background_color: 1.0, 0.0, 0.0
+        #     size_hint: 0.2, 0.05
+        #     pos_hint: {'x': 0.8, 'y': 0.0}
+        #     on_press:
+        #         root.polygonFlag = True
+        #         self.text = 'Done'
+        #         self.update()
 
 <Theory>:
     FloatLayout:
