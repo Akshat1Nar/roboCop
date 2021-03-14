@@ -1,44 +1,44 @@
 import math
 import random
-
-class Vector():
-
-    def __init__(self, point):
-        self.point = point
-
-    def __add__(self, other):
-        if isinstance(other, Vector):
-            return (self.point[0]+other.point[0], self.point[1]+other.point[1])
-        elif isinstance(other, int):
-            return (self.point[0]+other, self.point[1]+other)
-        else:
-            assert False
-
-
-    def __sub__(self, other):
-        if isinstance(other, Vector):
-            return (self.point[0]-other.point[0], self.point[1]-other.point[1])
-        elif isinstance(other, int):
-            return (self.point[0]-other, self.point[1]-other)
-        else:
-            assert False
-
-    def __mul__(self, other):
-        # Cross Product
-        if isinstance(other, Vector) or isinstance(other, tuple):
-            pass
-        elif isinstance(other, int):
-            pass
-        else:
-            assert False
-
-    def __truediv__(self, other):
-        if isinstance(other, Vector) or isinstance(other, tuple):
-            pass
-        elif isinstance(other, int):
-            pass
-        else:
-            assert False
+#
+# class Vector():
+#
+#     def __init__(self, point):
+#         self.point = point
+#
+#     def __add__(self, other):
+#         if isinstance(other, Vector):
+#             return (self.point[0]+other.point[0], self.point[1]+other.point[1])
+#         elif isinstance(other, int):
+#             return (self.point[0]+other, self.point[1]+other)
+#         else:
+#             assert False
+#
+#
+#     def __sub__(self, other):
+#         if isinstance(other, Vector):
+#             return (self.point[0]-other.point[0], self.point[1]-other.point[1])
+#         elif isinstance(other, int):
+#             return (self.point[0]-other, self.point[1]-other)
+#         else:
+#             assert False
+#
+#     def __mul__(self, other):
+#         # Cross Product
+#         if isinstance(other, Vector) or isinstance(other, tuple):
+#             pass
+#         elif isinstance(other, int):
+#             pass
+#         else:
+#             assert False
+#
+#     def __truediv__(self, other):
+#         if isinstance(other, Vector) or isinstance(other, tuple):
+#             pass
+#         elif isinstance(other, int):
+#             pass
+#         else:
+#             assert False
 
 class Polygon():
 
@@ -59,17 +59,35 @@ class Polygon():
 
     def edgePresent(self, edge):
         return edge in self.edges
+    #
+    # @staticmethod
+    # def crossproduct(point1, point2):
+    #     pass
 
     @staticmethod
-    def crossproduct(point1, point2):
-        pass
+    def commonVertex(s0, s1):
+        if s0[0] == s1[0]:
+            return True
+        if s0[0] == s1[1]:
+            return True
+        if s0[1] == s1[0]:
+            return True
+        if s0[1] == s1[1]:
+            return True
+        return False
+
 
     @staticmethod
-    def intersect(edge1, edge2):
-        p = edge1[0]
-        q = edge2[0]
-        r = (edge1[1][0]-edge1[0][0], (edge1[1][1]-edge1[0][1]))
-        s = (edge2[1][0]-edge2[0][0], (edge2[1][1]-edge2[0][1]))
+    def intersect(s0, s1):
+        dx0 = s0[1][0]-s0[0][0]
+        dx1 = s1[1][0]-s1[0][0]
+        dy0 = s0[1][1]-s0[0][1]
+        dy1 = s1[1][1]-s1[0][1]
+        p0 = dy1*(s1[1][0]-s0[0][0]) - dx1*(s1[1][1]-s0[0][1])
+        p1 = dy1*(s1[1][0]-s0[1][0]) - dx1*(s1[1][1]-s0[1][1])
+        p2 = dy0*(s0[1][0]-s1[0][0]) - dx0*(s0[1][1]-s1[0][1])
+        p3 = dy0*(s0[1][0]-s1[1][0]) - dx0*(s0[1][1]-s1[1][1])
+        return (p0*p1<=0) and (p2*p3<=0)
 
 
 

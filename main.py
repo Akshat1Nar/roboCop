@@ -46,7 +46,7 @@ class Application(Screen):
                 self.polygonFlag = False
                 if self.tempPoly.doneAddingPoints():
                     self.polygons.append(self.tempPoly)
-                self.updateScreen()
+                    self.updateScreen()
                 self.tempPoly = None
             else:
                 self.manager.transition.direction = 'right'
@@ -67,9 +67,13 @@ class Application(Screen):
             self.draw_point(touch)
             self.updateScreen()
 
-    def on_touch_move(self, touch):
-        self.draw_point(touch)
-        self.updateScreen()
+    # Uncomment this to enable drag facility, experimental
+    # causing bugs related to duplicate points
+    
+    # def on_touch_move(self, touch):
+    #     if (touch.x, touch.y) not in self.points:
+    #         self.draw_point(touch)
+    #         self.updateScreen()
 
     def on_touch_up(self, touch):
         pass
